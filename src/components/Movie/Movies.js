@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import MovieList from './MovieList';
 import MovieService from '../../services/MovieService';
+import AddMovie from './AddMovie';
 
 export default class Movies extends Component {
 
@@ -10,10 +11,16 @@ export default class Movies extends Component {
         this.state = {
             movies: []
         };
+
+        this.updateMovies = this.updateMovies.bind(this);
     }
 
     componentDidMount() {
         this.setState(() => ({ movies: MovieService.getMovies() }));
+    }
+
+    updateMovies() {
+        this.setState(() => ({ movies: JSON.parse(localStorage.getItem('movies')) }));
     }
 
     render() {
@@ -22,8 +29,8 @@ export default class Movies extends Component {
                 <div className="d-flex flex-row">                    
                     <div className="col-sm-12">
                         <MovieList movies={this.state.movies} />
+                        <AddMovie updateMovies={this.updateMovies} />
                     </div>
-                    <div className="col-sm-12 btn btn-primary">Add Movie</div>
                 </div>
             </div>
         );

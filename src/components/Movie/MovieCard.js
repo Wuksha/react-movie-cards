@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import StarRating from '../StarRating';
+import MovieService from '../../services/MovieService';
 
 const MovieCard = (props) => (
     <div className="movie-card">
@@ -10,6 +11,7 @@ const MovieCard = (props) => (
                 <h4 className="card-title">{props.movie.title}</h4>
                 <h6 className="card-subtitle mb-2 text-muted">{props.movie.subtitle}</h6>
                 <p className="text-justify" style={{fontSize: '14px'}}>{props.movie.description}</p>
+                <span onClick={() => MovieService.deleteMovie(props.movie.id)}>Delete movie</span>
             </div>
             <div className="card-footer">
                 <div className="clearfix">
