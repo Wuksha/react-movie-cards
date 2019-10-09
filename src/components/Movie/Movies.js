@@ -23,6 +23,7 @@ export default class Movies extends Component {
                     <div className="col-sm-12">
                         <MovieList movies={this.state.movies} />
                     </div>
+                    <div className="col-sm-12 btn btn-primary">Add Movie</div>
                 </div>
             </div>
         );
