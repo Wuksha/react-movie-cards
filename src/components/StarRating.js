@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import MovieService from '../services/MovieService';
 
 const width = 110;
 
@@ -23,6 +24,12 @@ const cropWidth = (rating) => {
     return Math.floor(rating * width / 5);
 };
 
+const VoteForMovie = (value, id, updateMovies) => {
+    console.log('voting');
+    MovieService.voteForMovie(id, value);
+    updateMovies();
+};
+
 const StarRating = (props) => {
 
     const containerStyle = { width: `${cropWidth(props.rating)}px` };
@@ -32,11 +39,11 @@ const StarRating = (props) => {
             <div style={styles.starsOuter}>
                 <div style={containerStyle}>
                     <div style={styles.starsEmptyInner}>
-                        <i className="fa fa-star-o fa-lg" style={styles.star}></i>
-                        <i className="fa fa-star-o fa-lg" style={styles.star}></i>
-                        <i className="fa fa-star-o fa-lg" style={styles.star}></i>
-                        <i className="fa fa-star-o fa-lg" style={styles.star}></i>
-                        <i className="fa fa-star-o fa-lg" style={styles.star}></i>
+                        <i onClick={() => VoteForMovie(1, props.id, props.updateMovies)} className="fa fa-star-o fa-lg" style={styles.star}></i>
+                        <i onClick={() => VoteForMovie(2, props.id, props.updateMovies)} className="fa fa-star-o fa-lg" style={styles.star}></i>
+                        <i onClick={() => VoteForMovie(3, props.id, props.updateMovies)} className="fa fa-star-o fa-lg" style={styles.star}></i>
+                        <i onClick={() => VoteForMovie(4, props.id, props.updateMovies)} className="fa fa-star-o fa-lg" style={styles.star}></i>
+                        <i onClick={() => VoteForMovie(5, props.id, props.updateMovies)} className="fa fa-star-o fa-lg" style={styles.star}></i>
                     </div>
                     <div style={styles.starsInner}>
                         <i className="fa fa-star fa-lg" style={styles.star}></i>
@@ -56,7 +63,9 @@ StarRating.defaultProps = {
 };
 
 StarRating.propTypes = {
-    rating: PropTypes.number
+    rating: PropTypes.number,
+    id: PropTypes.number,
+    updateMovies: PropTypes.func
 };
 
 export default StarRating;

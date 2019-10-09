@@ -32,13 +32,14 @@ export default class AddMovies extends Component {
         let errors = [];
 
         requiredFields.forEach(field => {
-            if (this.state[field] === null)
+            if (this.state[field] === null || this.state[field] === '')
                 errors.push(field);
         });
 
         if (errors.length > 0)
             this.setState({ errors });
         else {
+            this.setState({ errors });
             MovieService.addMovie(this.state.title, this.state.subtitle, this.state.description, this.state.year, this.state.imageUrl);
             this.props.updateMovies();
         }
