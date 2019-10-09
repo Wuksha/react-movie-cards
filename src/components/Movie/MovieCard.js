@@ -3,6 +3,11 @@ import PropTypes from 'prop-types';
 import StarRating from '../StarRating';
 import MovieService from '../../services/MovieService';
 
+const DeleteMovies = (id, update) => {
+    MovieService.deleteMovie(id);
+    update();
+};
+
 const MovieCard = (props) => (
     <div className="movie-card">
         <div className="movie-card card">
@@ -11,7 +16,7 @@ const MovieCard = (props) => (
                 <h4 className="card-title">{props.movie.title}</h4>
                 <h6 className="card-subtitle mb-2 text-muted">{props.movie.subtitle}</h6>
                 <p className="text-justify" style={{fontSize: '14px'}}>{props.movie.description}</p>
-                <span onClick={() => MovieService.deleteMovie(props.movie.id)}>Delete movie</span>
+                <span onClick={() => DeleteMovies(props.movie.id, props.updateMovies)}>Delete movie</span>
             </div>
             <div className="card-footer">
                 <div className="clearfix">
@@ -30,7 +35,8 @@ MovieCard.defaultProps = {
 };
 
 MovieCard.propTypes = {
-    movie: PropTypes.object
+    movie: PropTypes.object,
+    updateMovies: PropTypes.func
 };
 
 export default MovieCard;

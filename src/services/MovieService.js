@@ -23,4 +23,11 @@ export default class MovieService {
         localStorage.setItem('movies', JSON.stringify(localMovies));
     }
 
+    static deleteMovie(id) {
+        let allMovies = JSON.parse(localStorage.getItem('movies'));
+
+        allMovies = allMovies.filter(movie => movie.id !== id);
+
+        localStorage.setItem('movies', JSON.stringify(allMovies));
+    }
 }

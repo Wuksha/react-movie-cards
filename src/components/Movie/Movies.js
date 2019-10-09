@@ -28,7 +28,7 @@ export default class Movies extends Component {
             <div className="container-fluid" style={{marginLeft: '-15px'}}>
                 <div className="d-flex flex-row">                    
                     <div className="col-sm-12">
-                        <MovieList movies={this.state.movies} />
+                        <MovieList updateMovies={this.updateMovies} movies={this.state.movies} />
                         <AddMovie updateMovies={this.updateMovies} />
                     </div>
                 </div>
